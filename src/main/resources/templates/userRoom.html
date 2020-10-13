@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>All Employees</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+<body>
+<div class="container">
+  <div class="alert alert-danger" role="alert" th:if="${error}">
+    <div th:text="*{error}"></div>
+  </div>
+  <div class="row">
+    <div class="col col-3 mt-1">
+      <a th:href="@{/score}" class="btn btn-success btn-block"
+         href="#" role="button">Create score</a>
+    </div>
+    <div class="col col-3 mt-1 float-left">
+      <form th:action="@{/logout}" method="POST">
+        <input class="btn btn-warning btn-block" type="submit" value="Logout"/>
+      </form>
+    </div>
+    <div class="col col-6 mt-1 float-left">
+      <input class="btn btn-info btn-block" type="submit"
+             th:value="'Hi User -  ' + ${user.name} + '(id: ' + ${user.id} + ')'"/>
+    </div>
+  </div>
+  <div th:each="score : ${scores}" class="card mx-auto shadow p-3 mb-3 bg-white rounded mt-3">
+    <div class="row">
+      <div class="col-8">
+        <p th:text="'Name: ' + ${score.name}"></p>
+        <p th:text="'Limit: ' + ${score.limit}"></p>
+        <p th:text="'Balance: ' + ${score.balance}"></p>
+        <p th:text="'Owner: ' + ${score.owner.name} + '(id: ' + ${score.owner.id} + ')'"></p>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-6 mt-1">
+            <a th:href="@{/score/{score}/operations (score=${score.id})}"
+               class="btn btn-primary btn-block" href="#" role="button">Operations</a>
+          </div>
+          <div class="col-6 mt-1">
+            <a th:href="@{/score/{score}/operation (score=${score.id})}" class="btn btn-primary btn-block"
+               href="#" role="button">Add operation</a>
+          </div>
+          <div class="col-6 mt-1">
+            <div th:if="${security.hasScoreOwnerPermission(user, score.id)}">
+              <a th:href="@{/score/{score} (score=${score.id})}" class="btn btn-primary btn-block"
+                 href="#" role="button">Edit score</a>
+            </div>
+          </div>
+          <div class="col-6 mt-1">
+            <div th:if="${security.hasScoreOwnerPermission(user, score.id)}">
+              <form th:action="@{/score/{score}/delete (score=${score.id})}" method="POST">
+                <input class="btn btn-danger btn-block" type="submit" value="Delete"/>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="ml-3">
+            <p>Users:</p>
+            <ul>
+              <li th:each="user:${score.users}" th:text="${user.name} + '(id: ' + ${user.id} + ')'"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

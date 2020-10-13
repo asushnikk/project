@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/java-course
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
+    show-sql: true
+    database: postgresql
+  liquibase:
+    change-log: "classpath:liquibase/master.xml"
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

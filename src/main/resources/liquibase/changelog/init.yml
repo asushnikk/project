@@ -1,0 +1,115 @@
+databaseChangeLog:
+  - changeSet:
+      id: table - user
+      author: chelovek
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    - primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(40)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: password
+                  type: varchar(40)
+                  constraints:
+                    - nullable: false
+  - changeSet:
+      id: table - score
+      author: chelovek
+      changes:
+        - createTable:
+            tableName: score
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    - primaryKey: true
+              - column:
+                  name: balance
+                  type: integer
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: limit
+                  type: integer
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: name
+                  type: varchar(40)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: own_id
+                  type: bigint
+                  constraints:
+                    - foreignKeyName: score_id
+                    - references: user(id)
+  - changeSet:
+      id: table - operation
+      author: chelovek
+      changes:
+        - createTable:
+            tableName: operation
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    - primaryKey: true
+              - column:
+                  name: amount
+                  type: integer
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: category
+                  type: varchar(40)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: created
+                  type: datetime
+                  constraints:
+                    - nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: score_id
+                  type: bigint
+                  constraints:
+                    - nullable: false
+                    - foreignKeyName: operation_id
+                    - references: score(id)
+  - changeSet:
+      id: table - scoreToUser
+      author: chelovek
+      changes:
+        - createTable:
+            tableName: scoreToUser
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    - nullable: false
+                    - foreignKeyName: scoreToUser_score_id
+                    - references: user(id)
+              - column:
+                  name: score_id
+                  type: bigint
+                  constraints:
+                    - nullable: false
+                    - foreignKeyName: scoreToUser_user_id
+                    - references: score(id)
