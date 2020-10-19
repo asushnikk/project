@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
@@ -17,7 +18,7 @@ import java.util.List;
 @Component
 @EqualsAndHashCode(of = {"id", "name"})
 @ToString(of = {"id", "name"})
-@Table(name = "user")
+@Table(name = "proj_user")
 public class User implements UserDetails {
 
     @Id
