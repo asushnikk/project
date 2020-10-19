@@ -14,8 +14,8 @@ import training.project.repository.ScoreRepository;
 @AllArgsConstructor
 public class OperationService {
 
-    private ScoreRepository scoreRepository;
-    private CalculationService calculationService;
+    private final ScoreRepository scoreRepository;
+    private final CalculationService calculationService;
 
     public String getOperationsByScore(Model model, Long scoreId, RedirectAttributes redirectAttributes) {
 

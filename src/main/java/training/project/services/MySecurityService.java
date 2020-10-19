@@ -12,7 +12,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class MySecurityService {
 
-    private ScoreRepository scoreRepository;
+    private final ScoreRepository scoreRepository;
 
     public boolean hasScoreOwnerPermission(Object principal, Long scoreId) {
         User user = (User) principal;

@@ -15,9 +15,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ScoreService {
 
-    private ScoreRepository scoreRepository;
-    private UserService userService;
-    private ScoreMapper scoreMapper;
+    private final ScoreRepository scoreRepository;
+    private final UserService userService;
+    private final ScoreMapper scoreMapper;
 
     public String deleteScore(Long scoreId) {
         scoreRepository.deleteById(scoreId);

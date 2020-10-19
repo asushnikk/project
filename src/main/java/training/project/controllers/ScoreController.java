@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ScoreController {
 
-    private ScoreService scoreService;
+    private final ScoreService scoreService;
 
     @PreAuthorize("@mySecurityService.hasScoreOwnerPermission(principal, #scoreId)")
     @RequestMapping(path = "score/{score}/delete")

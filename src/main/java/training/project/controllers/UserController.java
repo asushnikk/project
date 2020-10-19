@@ -1,6 +1,6 @@
 package training.project.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -10,10 +10,10 @@ import training.project.dto.UserDto;
 import training.project.services.UserService;
 
 @Controller
+@AllArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @GetMapping(value = "/registration")
     public String registrationForm(Model model, @RequestParam(name = "error", required = false) String error) {

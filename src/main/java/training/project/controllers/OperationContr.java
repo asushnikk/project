@@ -23,7 +23,7 @@ import training.project.services.OperationService;
 @AllArgsConstructor
 public class OperationContr {
 
-    private OperationService operationService;
+    private final OperationService operationService;
 
     @PreAuthorize("@mySecurityService.hasScoreUserPermission(authentication, #scoreId)")
     @GetMapping(value = "/{score}/operations")

@@ -12,7 +12,7 @@ import training.project.services.UserService;
 @AllArgsConstructor
 public class WebSecConf extends WebSecurityConfigurerAdapter {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

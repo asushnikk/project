@@ -19,10 +19,10 @@ import training.project.repository.UserRepository;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
 
-    private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private UserMapper userMapper;
-    private ScoreRepository scoreRepository;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserMapper userMapper;
+    private final ScoreRepository scoreRepository;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

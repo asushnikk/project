@@ -1,6 +1,6 @@
 package training.project.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import training.project.domain.Score;
@@ -12,13 +12,12 @@ import training.project.repository.OperationRepository;
 import java.time.LocalDateTime;
 
 @Service
+@AllArgsConstructor
 public class CalculationService {
 
-    @Autowired
-    private OperationRepository operationRepository;
+    private final OperationRepository operationRepository;
 
-    @Autowired
-    private OperationMapper operationMapper;
+    private final OperationMapper operationMapper;
 
     public String makeCalculations(OperationDto operation, Score score, RedirectAttributes redirectAttributes) {
 
