@@ -22,9 +22,9 @@ public interface ScoreMapper {
 
     @Mapping(target = "id", source = "scoreId")
     @Mapping(target = "owner", source = "user")
-    @Mapping(target = "name", source = "score.name")
-    @Mapping(target = "limit", expression = "java(setLimit(score))")
-    @Mapping(target = "users", expression = "java(setUsers(score, user))")
+    @Mapping(target = "name", source = "scoreDto.name")
+    @Mapping(target = "limit", expression = "java(setLimit(scoreDto))")
+    @Mapping(target = "users", expression = "java(setUsers(scoreDto, user))")
     Score toScoreWithOwnerAndId(ScoreDto scoreDto, User user, Long scoreId);
 
     default Integer setLimit(ScoreDto scoreDto) {

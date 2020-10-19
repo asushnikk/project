@@ -3,6 +3,7 @@ package training.project.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Score {
     private String name;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinTable(name = "scoreToUser",
+    @JoinTable(name = "score2user",
             joinColumns = {@JoinColumn(name = "score_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private List<User> users;

@@ -1,6 +1,6 @@
 package training.project.services;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,13 +16,19 @@ import training.project.repository.ScoreRepository;
 import training.project.repository.UserRepository;
 
 @Service
-@AllArgsConstructor
 public class UserService implements UserDetailsService {
 
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final UserMapper userMapper;
-    private final ScoreRepository scoreRepository;
+    @Autowired
+    private  UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private  UserMapper userMapper;
+
+    @Autowired
+    private  ScoreRepository scoreRepository;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

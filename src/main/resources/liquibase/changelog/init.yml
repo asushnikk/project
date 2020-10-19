@@ -93,23 +93,23 @@ databaseChangeLog:
                     - foreignKeyName: operation_id
                     - references: score(id)
   - changeSet:
-      id: table - scoreToUser
+      id: table - score2user
       author: chelovek
       changes:
         - createTable:
-            tableName: scoreToUser
+            tableName: score2user
             columns:
               - column:
                   name: user_id
                   type: bigint
                   constraints:
                     - nullable: false
-                    - foreignKeyName: scoreToUser_score_id
+                    - foreignKeyName: score2user_score_id
                     - references: user(id)
               - column:
                   name: score_id
                   type: bigint
                   constraints:
                     - nullable: false
-                    - foreignKeyName: scoreToUser_user_id
+                    - foreignKeyName: score2user_user_id
                     - references: score(id)
